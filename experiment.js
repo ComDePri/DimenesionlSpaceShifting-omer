@@ -68,7 +68,7 @@ function get_data() {
 
 // Example function to save the data in JSON format
 function saveData() {
-	jsPsych.data.localSave('file','json')
+	jsPsych.data.localSave('file.json','json')
 }
 
 
