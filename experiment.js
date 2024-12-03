@@ -72,7 +72,7 @@ function getUrlDetails(){
 	const urlParams = new URL(location.href).searchParams;
 
 // Get parameters by name
-	return urlParams.get('userID')
+	return urlParams.get('PROLIFIC_PID')
 }
 
 function saveData() {
