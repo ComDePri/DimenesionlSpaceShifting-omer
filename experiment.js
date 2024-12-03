@@ -1,6 +1,8 @@
 /* ************************************ */
 /* Define helper functions */
 /* ************************************ */
+const BUCKET_NAME = "dimensional-set-shifting-experiment-2024"
+
 function evalAttentionChecks() {
 	var check_percent = 1
 	if (run_attention_checks) {
@@ -66,9 +68,36 @@ function get_data() {
 	}
 }
 
-// Example function to save the data in JSON format
+function getUrlDetails(){
+	const urlParams = new URL(location.href).searchParams;
+
+// Get parameters by name
+	return urlParams.get('userID')
+}
+
 function saveData() {
-	jsPsych.data.localSave('file.json','json')
+	// Retrieve data from jsPsych
+
+	let subject = getUrlDetails()
+	var data = jsPsych.data.dataAsJSON()// Get data as JSON string
+
+	// Make a POST request to the Lambda function or API Gateway endpoint
+	$.ajax({
+		url: 'https://hss74dd1ed.execute-api.us-east-1.amazonaws.com/dev/', // Replace with your API Gateway/Lambda endpoint
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify({
+			"subject_id": `${subject}`,
+			"bucket": `${BUCKET_NAME}`,
+			"exp_data": JSON.stringify(data)
+				}),
+		success: function(response) {
+			console.log('Data uploaded successfully:', response);
+		},
+		error: function(xhr, status, error) {
+			console.error('Error uploading data:', error);
+		}
+	});
 }
 
 
@@ -365,7 +394,7 @@ for (b = 0; b < blocks.length; b++) {
 			} else {
 				correct_counter = 0
 			}
-			if (correct_counter == 6 || trial_counter == 50) {
+			if (correct_counter == 1 || trial_counter == 1) {
 				stage_over = 1
 			}
 			// Log the number of remaining trials for this stage
