@@ -1,0 +1,19 @@
+{
+    "cognitive_atlas_task_id": "trm_5667476fc14dd",
+    "instructions":"Respond to the stimuli on the screen.",
+    "description":"Expfactory experiment",
+    "url":"https://www.github.com/expfactory-experiments/dimensional-set-shifting",
+    "contributors": [
+        "Ian Eisenberg",
+        "Zeynep Enkavi",
+        "Patrick Bissett",
+        "Vanessa Sochat",
+        "Russell Poldrack"
+    ],
+    "exp_id": "dimensional-set-shifting",
+    "name": "Intra-Dimensional/Extra-Dimensional Set Shifting",
+    "notes": ["Condition indicates stage in the IDED task",
+              "http://www.sciencedirect.com/science/article/pii/0028393289901280"],
+    "template": "jspsych",
+    "time": 10
+}
