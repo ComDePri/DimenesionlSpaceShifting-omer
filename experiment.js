@@ -101,8 +101,6 @@ function saveData() {
 }
 
 
-
-
 /* ************************************ */
 /* Define experimental variables */
 /* ************************************ */
@@ -394,7 +392,7 @@ for (b = 0; b < blocks.length; b++) {
 			} else {
 				correct_counter = 0
 			}
-			if (correct_counter == 1 || trial_counter == 1) {
+			if (correct_counter == 6 || trial_counter == 50) {
 				stage_over = 1
 			}
 			// Log the number of remaining trials for this stage
