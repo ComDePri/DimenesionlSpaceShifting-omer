@@ -270,7 +270,7 @@ var end_block = {
 		saveData();
 		let expURL = getExpURL()
 		console.log("found: " + expURL);
-		window.location.replace = expURL
+		window.location.replace(expURL);
 	}
 };
 
