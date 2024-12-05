@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="save to s3" />
+    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="max trialsmfor testing" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,6 +72,7 @@
       <workItem from="1733226314324" duration="184000" />
       <workItem from="1733226965213" duration="5793000" />
       <workItem from="1733396294803" duration="3735000" />
+      <workItem from="1733406774195" duration="814000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -121,7 +122,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733233520593</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="save to s3">
+      <option name="closed" value="true" />
+      <created>1733406940017</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733406940017</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test option">
+      <option name="closed" value="true" />
+      <created>1733406953778</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733406953778</updated>
+    </task>
+    <task id="LOCAL-00009" summary="max trialsmfor testing">
+      <option name="closed" value="true" />
+      <created>1733407592787</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733407592787</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +166,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="save to s3" />
-    <option name="LAST_COMMIT_MESSAGE" value="save to s3" />
+    <MESSAGE value="test option" />
+    <MESSAGE value="max trialsmfor testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="max trialsmfor testing" />
   </component>
 </project>

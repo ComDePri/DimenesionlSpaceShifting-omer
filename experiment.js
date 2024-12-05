@@ -68,17 +68,24 @@ function get_data() {
 	}
 }
 
-function getUrlDetails(){
+function getProlificId(){
 	const urlParams = new URL(location.href).searchParams;
 
 // Get parameters by name
 	return urlParams.get('PROLIFIC_PID')
 }
 
+function getExpURL(){
+	const urlParams = new URL(location.href).searchParams;
+
+// Get parameters by name
+	return urlParams.get('expURL')
+}
+
 function saveData() {
 	// Retrieve data from jsPsych
 
-	let subject = getUrlDetails()
+	let subject = getProlificId()
 	var data = jsPsych.data.dataAsJSON()// Get data as JSON string
 
 	// Make a POST request to the Lambda function or API Gateway endpoint
@@ -114,7 +121,7 @@ var instructTimeThresh = 0 ///in seconds
 // Set up task variables
 var responses = [37, 38, 39, 40]
 
-if(getUrlDetails() === "test"){
+if(getProlificId() === "test"){
 	var blocks = ['simple'] //Simple: 1 dimension alone, separate: 2 dimensions side-by-side, compound: overlapping
 	var stages = ['simple']
 	var max_trials = 2
@@ -260,6 +267,7 @@ var end_block = {
 	timing_post_trial: 0,
 	on_finish: function() {
 		saveData();
+		window.location.replace = getExpURL();
 	}
 };
 
