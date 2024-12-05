@@ -113,10 +113,15 @@ var instructTimeThresh = 0 ///in seconds
 // task specific variables
 // Set up task variables
 var responses = [37, 38, 39, 40]
-var blocks = ['simple', 'separate', 'compound', 'ID', 'ED'] //Simple: 1 dimension alone, separate: 2 dimensions side-by-side, compound: overlapping
-var stages = ['simple', 'simple_rev', 'separate', 'compound', 'compound_rev', 'ID', 'ID_rev', 'ED',
-	'ED_rev'
-]
+
+if(getUrlDetails() === "test"){
+	var blocks = ['simple'] //Simple: 1 dimension alone, separate: 2 dimensions side-by-side, compound: overlapping
+	var stages = ['simple']
+} else {
+	var blocks = ['simple', 'separate', 'compound', 'ID', 'ED'] //Simple: 1 dimension alone, separate: 2 dimensions side-by-side, compound: overlapping
+	var stages = ['simple', 'simple_rev', 'separate', 'compound', 'compound_rev', 'ID', 'ID_rev', 'ED',
+		'ED_rev']
+}
 
 // Set up variables for stimuli
 var path = 'images/'
