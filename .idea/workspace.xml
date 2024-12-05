@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="href fallback + dont save history">
+    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="expUrl to have sessID and studID">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.js" afterDir="false" />
     </list>
@@ -75,7 +75,7 @@
       <workItem from="1733226314324" duration="184000" />
       <workItem from="1733226965213" duration="5793000" />
       <workItem from="1733396294803" duration="3735000" />
-      <workItem from="1733406774195" duration="3871000" />
+      <workItem from="1733406774195" duration="4702000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -197,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733409736267</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="expUrl to have sessID and studID">
+      <option name="closed" value="true" />
+      <created>1733410898473</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733410898473</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +232,7 @@
     <MESSAGE value="console logs" />
     <MESSAGE value="href fallback" />
     <MESSAGE value="href fallback + dont save history" />
-    <option name="LAST_COMMIT_MESSAGE" value="href fallback + dont save history" />
+    <MESSAGE value="expUrl to have sessID and studID" />
+    <option name="LAST_COMMIT_MESSAGE" value="expUrl to have sessID and studID" />
   </component>
 </project>
