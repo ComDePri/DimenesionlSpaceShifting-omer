@@ -79,7 +79,7 @@ function getExpURL(){
 	const urlParams = new URL(location.href).searchParams;
 
 // Get parameters by name
-	console.log("getting expUrl")
+	//console.log("getting expUrl")
 	return urlParams.get('expUrl')
 }
 
@@ -269,9 +269,11 @@ var end_block = {
 	on_finish: function() {
 		saveData();
 		let expURL = getExpURL()
-		console.log("found: " + expURL);
-		window.location.replace(expURL);
+		//console.log("found: " + expURL);
+		//window.location.replace(expURL);
 		window.location.href = expURL;
+		history.pushState(null, '', window.location.href);
+
 
 	}
 };
@@ -416,8 +418,8 @@ for (b = 0; b < blocks.length; b++) {
 				stage_over = 1
 			}
 			// Log the number of remaining trials for this stage
-			console.log(`Trial ${trial_counter} completed.`);
-			console.log(`Currect count is ${correct_counter}.`);
+			//console.log(`Trial ${trial_counter} completed.`);
+			//console.log(`Currect count is ${correct_counter}.`);
 		}
 	}
 	var stage_node = {
@@ -428,7 +430,7 @@ for (b = 0; b < blocks.length; b++) {
 				correct_counter = 0
 				trial_counter = 0
 				stage_counter += 1
-				console.log(`Stage Over.`);
+				//console.log(`Stage Over.`);
 				return false
 			} else {
 				return true
