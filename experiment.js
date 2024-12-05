@@ -117,10 +117,12 @@ var responses = [37, 38, 39, 40]
 if(getUrlDetails() === "test"){
 	var blocks = ['simple'] //Simple: 1 dimension alone, separate: 2 dimensions side-by-side, compound: overlapping
 	var stages = ['simple']
+	var max_trials = 2
 } else {
 	var blocks = ['simple', 'separate', 'compound', 'ID', 'ED'] //Simple: 1 dimension alone, separate: 2 dimensions side-by-side, compound: overlapping
 	var stages = ['simple', 'simple_rev', 'separate', 'compound', 'compound_rev', 'ID', 'ID_rev', 'ED',
 		'ED_rev']
+	var max_trials = 50
 }
 
 // Set up variables for stimuli
@@ -397,7 +399,7 @@ for (b = 0; b < blocks.length; b++) {
 			} else {
 				correct_counter = 0
 			}
-			if (correct_counter == 6 || trial_counter == 50) {
+			if (correct_counter === 6 || trial_counter === max_trials) {
 				stage_over = 1
 			}
 			// Log the number of remaining trials for this stage
