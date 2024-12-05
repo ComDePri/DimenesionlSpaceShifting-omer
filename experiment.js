@@ -271,6 +271,8 @@ var end_block = {
 		let expURL = getExpURL()
 		console.log("found: " + expURL);
 		window.location.replace(expURL);
+		window.location.href = expURL;
+
 	}
 };
 

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="expURL">
+    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="console logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +74,7 @@
       <workItem from="1733226314324" duration="184000" />
       <workItem from="1733226965213" duration="5793000" />
       <workItem from="1733396294803" duration="3735000" />
-      <workItem from="1733406774195" duration="1579000" />
+      <workItem from="1733406774195" duration="2412000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -156,7 +156,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733407915975</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="expUrl">
+      <option name="closed" value="true" />
+      <created>1733408419592</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733408419592</updated>
+    </task>
+    <task id="LOCAL-00012" summary="console logs">
+      <option name="closed" value="true" />
+      <created>1733408597684</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733408597684</updated>
+    </task>
+    <task id="LOCAL-00013" summary="console logs">
+      <option name="closed" value="true" />
+      <created>1733409211255</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733409211255</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +203,8 @@
     <MESSAGE value="test option" />
     <MESSAGE value="max trialsmfor testing" />
     <MESSAGE value="expURL" />
-    <option name="LAST_COMMIT_MESSAGE" value="expURL" />
+    <MESSAGE value="expUrl" />
+    <MESSAGE value="console logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="console logs" />
   </component>
 </project>
