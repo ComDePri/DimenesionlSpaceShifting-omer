@@ -79,6 +79,7 @@ function getExpURL(){
 	const urlParams = new URL(location.href).searchParams;
 
 // Get parameters by name
+	console.log("getting expUrl")
 	return urlParams.get('expUrl')
 }
 
@@ -267,7 +268,9 @@ var end_block = {
 	timing_post_trial: 0,
 	on_finish: function() {
 		saveData();
-		window.location.replace = getExpURL();
+		let expURL = getExpURL()
+		console.log("found: " + expURL);
+		window.location.replace = expURL
 	}
 };
 
