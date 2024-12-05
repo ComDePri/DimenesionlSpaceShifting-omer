@@ -80,7 +80,13 @@ function getExpURL(){
 
 // Get parameters by name
 	//console.log("getting expUrl")
-	return urlParams.get('expUrl')
+	let expurl =  urlParams.get('expUrl');
+	let pid = urlParams.get('PROLIFIC_PID');
+	let stud = urlParams.get('studID');
+	let sess = urlParams.get('sessID');
+
+	return expurl +"/?PROLIFIC_PID="+ pid + "&studID=" + stud + "&sessID=" + sess;
+
 }
 
 function saveData() {
@@ -268,10 +274,7 @@ var end_block = {
 	timing_post_trial: 0,
 	on_finish: function() {
 		saveData();
-		let expURL = getExpURL()
-		//console.log("found: " + expURL);
-		//window.location.replace(expURL);
-		window.location.href = expURL;
+		window.location.href = getExpURL();
 		history.pushState(null, '', window.location.href);
 
 
