@@ -79,7 +79,7 @@ function getExpURL(){
 	const urlParams = new URL(location.href).searchParams;
 
 // Get parameters by name
-	return urlParams.get('expURL')
+	return urlParams.get('expUrl')
 }
 
 function saveData() {
