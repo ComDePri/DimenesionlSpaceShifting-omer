@@ -84,9 +84,7 @@ function getExpURL(){
 	let pid = urlParams.get('PROLIFIC_PID');
 	let stud = urlParams.get('studID');
 	let sess = urlParams.get('sessID');
-
 	return expurl +"/?PROLIFIC_PID="+ pid + "&studID=" + stud + "&sessID=" + sess;
-
 }
 
 function saveData() {
@@ -173,7 +171,9 @@ var contents = [] //holds content of each box (left, up, right, down)
 var correct_counter = 0 // tracks number of correct choices in each stage
 var stage_counter = 0 // tracks number of stages
 var trial_counter = 0 // tracks trials in each stage
+var wrong_counter = 0 // tracks wrong trials
 var stage_over = 0 // when this variable equals 1 the experiment transitions to the next stage
+var end_experiment = 0
 var target = '' // target is one of the stims
 var stims = []
 var reversal = false
@@ -205,10 +205,9 @@ var post_task_block = {
    data: {
        trial_id: "post task questions"
    },
-   questions: ['<p class = center-block-text style = "font-size: 20px">Please summarize what you were asked to do in this task.</p>',
-              '<p class = center-block-text style = "font-size: 20px">Do you have any comments about this task?</p>'],
-   rows: [15, 15],
-   columns: [60,60]
+   questions: ['<p class = center-block-text style = "font-size: 20px">Please summarize what you were asked to do in this task.</p>'],
+   rows: [15],
+   columns: [60]
 };
 
 /* define static blocks */
@@ -231,10 +230,11 @@ var instructions_block = {
 		trial_id: 'instruction'
 	},
 	pages: [
-		'<div class = centerbox><p class = "block-text">In this task you will see two patterns placed in two of four boxes on the screen (shown on the next screen). One of the patterns is correct. You must select the one you think is correct by pressing the arrow key corresponding to the correct box (left, right, up or down).</p><p class = "block-text">There is a rule you can follow to make sure you make the correct choice each time. The computer will be keeping track of how well you arc doing and when it is clear that you know the rule then the computer will change, but this not happen very often. To begin with, there is nothing on the screen to tell you which of the two patterns is correct, so your first choice will be a simple guess. However, the computer will give a message after each attempt to tell you whether you are right or wrong. </p></div>',
+		'<div class = centerbox><p class = "block-text">' + 'In this task, you will see two patterns placed in two of the four boxes on the screen (as shown on the next screen). One of the patterns is correct. You must select the one you think is correct by pressing the arrow key corresponding to the correct box (left, right, up, or down).' + '</p>' +
+		' <p class = "block-text">' + 'There is a rule you can follow to ensure you make the correct choice each time. The computer will track how well you are doing, and when it is clear that you know the rule, the computer will change it. However, this will not happen very often. Initially, there is nothing on the screen to indicate which of the two patterns is correct, so your first choice will be a simple guess. The computer will provide feedback after each attempt to let you know whether you are right or wrong.'+ '.</p></div>',
 		instruction_stim +
 		'<div class = betweenStimBox><div class = "center-text">An example trial.</div></div>',
-		'<div class = centerbox><p class = "block-text">Once again, you will see two patterns similar to what you saw on the last page. One of the patterns is correct. You select a pattern by pressing the corresponding arrow key. After you respond you will get feedback about whether you were correct. After the computer knows that you have learned the rule, the rule will change. </p></div>'
+		'<div class = centerbox><p class = "block-text">Once again, you will see two patterns, similar to what you saw on the previous page. One of the patterns is correct. You select a pattern by pressing the corresponding arrow key. After you respond, you will receive feedback indicating whether your choice was correct. Once the computer determines that you have learned the rule, the rule will change.</p></div>'
 	],
 	allow_keys: false,
 	show_clickable_nav: true,
@@ -276,10 +276,26 @@ var end_block = {
 		saveData();
 		window.location.href = getExpURL();
 		history.pushState(null, '', window.location.href);
-
-
 	}
 };
+
+
+var error_block = {
+	type: 'poldrack-text',
+	timing_response: 180000,
+	data: {
+		trial_id: "end",
+		exp_id: 'dimensional_set_shifting'
+	},
+	text: '<div class="centerbox"><p class="center-block-text">Sorry, you can not complete this task.<br>Press <strong>enter</strong> to continue.</p></div>',
+	cont_key: [13],
+	timing_post_trial: 0,
+	on_finish: function() {
+		saveData();
+		window.history.back();
+	}
+};
+
 
 var fixation_block = {
 	type: 'poldrack-single-stim',
@@ -411,11 +427,18 @@ for (b = 0; b < blocks.length; b++) {
 		data: get_data,
 		timing_post_trial: 100,
 		on_finish: function(data) {
-			trial_counter += 1
+			trial_counter++
 			if (data.correct === true) {
-				correct_counter += 1
+				correct_counter++
 			} else {
+				wrong_counter++
+				console.log("wrong" + wrong_counter)
 				correct_counter = 0
+			}
+			if( wrong_counter === 10){
+				stage_over = 1
+				end_experiment = true
+
 			}
 			if (correct_counter === 6 || trial_counter === max_trials) {
 				stage_over = 1
@@ -428,6 +451,15 @@ for (b = 0; b < blocks.length; b++) {
 	var stage_node = {
 		timeline: [fixation_block, stage_block],
 		loop_function: function(data) {
+
+			if (end_experiment) {
+				jsPsych.getDisplayElement().innerHTML = ''; // Clear the display
+				jsPsych.init({
+					timeline: [error_block]
+				});
+				return false;
+			}
+
 			if (stage_over == 1) {
 				stage_over = 0
 				correct_counter = 0
@@ -447,6 +479,8 @@ for (b = 0; b < blocks.length; b++) {
 		dimensional_set_shifting_experiment.push(stage_node)
 	}
 }
-
 dimensional_set_shifting_experiment.push(post_task_block)
 dimensional_set_shifting_experiment.push(end_block)
+dimensional_set_shifting_experiment.push(error_block)
+
+
