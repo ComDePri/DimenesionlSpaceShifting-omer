@@ -87,6 +87,18 @@ function getExpURL(){
 	return expurl +"/?PROLIFIC_PID="+ pid + "&studID=" + stud + "&sessID=" + sess;
 }
 
+function getErrorURL(){
+	const urlParams = new URL(location.href).searchParams;
+
+// Get parameters by name
+	//console.log("getting expUrl")
+	let expurl =  urlParams.get('iferror');
+	let pid = urlParams.get('PROLIFIC_PID');
+	let stud = urlParams.get('studID');
+	let sess = urlParams.get('sessID');
+	return expurl +"/?PROLIFIC_PID="+ pid + "&studID=" + stud + "&sessID=" + sess;
+}
+
 function saveData() {
 	// Retrieve data from jsPsych
 
@@ -292,7 +304,7 @@ var error_block = {
 	timing_post_trial: 0,
 	on_finish: function() {
 		saveData();
-		window.history.back();
+		window.location.href = getErrorURL();
 	}
 };
 
