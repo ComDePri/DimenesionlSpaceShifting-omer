@@ -299,7 +299,7 @@ var error_block = {
 		trial_id: "end",
 		exp_id: 'dimensional_set_shifting'
 	},
-	text: '<div class="centerbox"><p class="center-block-text">Sorry, you can not complete this task.<br>Press <strong>enter</strong> to continue.</p></div>',
+	text: '<div class="centerbox"><p class="center-block-text">Sorry, test failed.<br>Press <strong>enter</strong> to continue.</p></div>',
 	cont_key: [13],
 	timing_post_trial: 0,
 	on_finish: function() {
