@@ -447,7 +447,7 @@ for (b = 0; b < blocks.length; b++) {
 				console.log("wrong" + wrong_counter)
 				correct_counter = 0
 			}
-			if( wrong_counter === 10){
+			if( wrong_counter === 50){
 				stage_over = 1
 				end_experiment = true
 
