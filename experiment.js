@@ -304,7 +304,7 @@ var error_block = {
 	timing_post_trial: 0,
 	on_finish: function() {
 		saveData();
-		window.location.href = getErrorURL();
+		window.location.href = 'https://app.prolific.com/submissions/complete?cc=C135SBBZ'
 	}
 };
 
