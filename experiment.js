@@ -3,6 +3,31 @@
 /* ************************************ */
 const BUCKET_NAME = "dimensional-set-shifting-experiment-2024"
 
+function startMyTimer() {
+	let timer;
+	kick_on_timeout = true;
+	const resetTimer = () => {
+	  if (timer) {
+		clearTimeout(timer);
+	  }
+	  timer = setTimeout(function() {
+  
+	  if(kick_on_timeout){
+		console.log('90 seconds have passed');
+		saveData();
+		jsPsych.endCurrentTimeline();
+		local_global_letter_experiment = [error_block];
+		jsPsych.init({
+		  timeline: local_global_letter_experiment
+		});
+	  }
+	  }, 5000);
+	};
+  
+	document.addEventListener('keydown', resetTimer);
+	resetTimer(); // Start the timer initially
+  }
+
 function evalAttentionChecks() {
 	var check_percent = 1
 	if (run_attention_checks) {
@@ -135,6 +160,7 @@ var sumInstructTime = 0 //ms
 var instructTimeThresh = 0 ///in seconds
 
 // task specific variables
+kick_on_timeout = false
 // Set up task variables
 var responses = [37, 38, 39, 40]
 
@@ -219,7 +245,7 @@ var post_task_block = {
    },
    questions: ['<p class = center-block-text style = "font-size: 20px">Please summarize what you were asked to do in this task.</p>'],
    rows: [15],
-   columns: [60]
+   columns: [60],
 };
 
 /* define static blocks */
@@ -243,14 +269,15 @@ var instructions_block = {
 	},
 	pages: [
 		'<div class = centerbox><p class = "block-text">' + 'In this task, you will see two patterns placed in two of the four boxes on the screen (as shown on the next screen). One of the patterns is correct. You must select the one you think is correct by pressing the arrow key corresponding to the correct box (left, right, up, or down).' + '</p>' +
-		' <p class = "block-text">' + 'There is a rule you can follow to ensure you make the correct choice each time. The computer will track how well you are doing, and when it is clear that you know the rule, the computer will change it. However, this will not happen very often. Initially, there is nothing on the screen to indicate which of the two patterns is correct, so your first choice will be a simple guess. The computer will provide feedback after each attempt to let you know whether you are right or wrong.'+ '.</p></div>',
+		' <p class = "block-text">' + 'There is a rule you need to follow to ensure you make the correct choice each time. The computer will track how well you are doing, and when it is clear that you know the rule, the computer will change it. However, this will not happen very often. Initially, there is nothing on the screen to indicate which of the two patterns is correct, so your first choice will be a simple guess. The computer will provide feedback after each attempt to let you know whether you are right or wrong.'+ '</p></div>',
 		instruction_stim +
 		'<div class = betweenStimBox><div class = "center-text">An example trial.</div></div>',
-		'<div class = centerbox><p class = "block-text">Once again, you will see two patterns, similar to what you saw on the previous page. One of the patterns is correct. You select a pattern by pressing the corresponding arrow key. After you respond, you will receive feedback indicating whether your choice was correct. Once the computer determines that you have learned the rule, the rule will change.</p></div>'
+		'<div class = centerbox><p class = "block-text">Once again, you will see two patterns, similar to what you saw on the previous page. One of the patterns is correct. You select a pattern by pressing the corresponding arrow key. After you respond, you will receive feedback indicating whether your choice was correct. Once the computer determines that you have learned the rule, the rule will change.</p></div>',
+		'<div class = centerbox><p class = "block-text">'+ '<strong>If your activity is two standard deviations below the participants’ average or if you are not active in the task, we may ask you to return your submission.</strong></p></div>'
 	],
 	allow_keys: false,
 	show_clickable_nav: true,
-	timing_post_trial: 1000
+	timing_post_trial: 1000,
 };
 
 var instruction_node = {
@@ -271,7 +298,7 @@ var instruction_node = {
 			feedback_instruct_text = 'Done with instructions. Press <strong>enter</strong> to continue.'
 			return false
 		}
-	}
+	},
 }
 
 var end_block = {
@@ -299,7 +326,9 @@ var error_block = {
 		trial_id: "end",
 		exp_id: 'dimensional_set_shifting'
 	},
-	text: '<div class="centerbox"><p class="center-block-text">Sorry, test failed.<br>Press <strong>enter</strong> to continue.</p></div>',
+	text: '<div class="centerbox"><p class="center-block-text">You failed to understand the rule within 50 attempts, indicating that you gave intentionally low-effort responses.\n' +
+		'The task will now end, and your participation in the study will be incomplete.\n' +
+		'<br>Press <strong>enter</strong> to continue.</p></div>',
 	cont_key: [13],
 	timing_post_trial: 0,
 	on_finish: function() {
@@ -493,6 +522,5 @@ for (b = 0; b < blocks.length; b++) {
 }
 dimensional_set_shifting_experiment.push(post_task_block)
 dimensional_set_shifting_experiment.push(end_block)
-dimensional_set_shifting_experiment.push(error_block)
 
 
