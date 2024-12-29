@@ -321,19 +321,18 @@ var end_block = {
 
 var error_block = {
 	type: 'poldrack-text',
-	timing_response: 180000,
+	timing_response: 3000, // Set the timeout to 5 seconds
 	data: {
 		trial_id: "end",
 		exp_id: 'dimensional_set_shifting'
 	},
 	text: '<div class="centerbox"><p class="center-block-text">You failed to understand the rule within 50 attempts, indicating that you gave intentionally low-effort responses.\n' +
-		'The task will now end, and your participation in the study will be incomplete.\n' +
-		'<br>Press <strong>enter</strong> to continue.</p></div>',
-	cont_key: [13],
+		'The task will now end, and your participation in the study will be incomplete.</p></div>',
+	cont_key: [], // Disable key press
 	timing_post_trial: 0,
-	on_finish: function() {
+	on_finish: function () {
 		saveData();
-		window.location.href = 'https://app.prolific.com/submissions/complete?cc=C135SBBZ'
+		window.location.replace('https://app.prolific.com/submissions/complete?cc=CMYS8K0Y');
 	}
 };
 
@@ -476,7 +475,7 @@ for (b = 0; b < blocks.length; b++) {
 				console.log("wrong" + wrong_counter)
 				correct_counter = 0
 			}
-			if( wrong_counter === 50){
+			if( wrong_counter === 3){
 				stage_over = 1
 				end_experiment = true
 
@@ -520,7 +519,6 @@ for (b = 0; b < blocks.length; b++) {
 		dimensional_set_shifting_experiment.push(stage_node)
 	}
 }
-dimensional_set_shifting_experiment.push(post_task_block)
 dimensional_set_shifting_experiment.push(end_block)
 
 
