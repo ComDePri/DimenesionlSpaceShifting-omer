@@ -273,7 +273,7 @@ var instructions_block = {
 		instruction_stim +
 		'<div class = betweenStimBox><div class = "center-text">An example trial.</div></div>',
 		'<div class = centerbox><p class = "block-text">Once again, you will see two patterns, similar to what you saw on the previous page. One of the patterns is correct. You select a pattern by pressing the corresponding arrow key. After you respond, you will receive feedback indicating whether your choice was correct. Once the computer determines that you have learned the rule, the rule will change.</p></div>',
-		'<div class = centerbox><p class = "block-text">'+ '<strong>If your activity is two standard deviations below the participants’ average or if you are not active in the task, we may ask you to return your submission.</strong></p></div>'
+		'<div class = centerbox><p class = "block-text">'+ '<strong>If your activity is three standard deviations below the participants’ average or if you are not active in the task, we may ask you to return your submission.</strong></p></div>'
 	],
 	allow_keys: false,
 	show_clickable_nav: true,

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="press enter to continue">
+    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="no enter if error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,8 @@
       <workItem from="1734702567587" duration="19000" />
       <workItem from="1735080803845" duration="1464000" />
       <workItem from="1735477036911" duration="218000" />
-      <workItem from="1735477271648" duration="675000" />
+      <workItem from="1735477271648" duration="801000" />
+      <workItem from="1735491768845" duration="133000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -279,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735081994573</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="no enter if error">
+      <option name="closed" value="true" />
+      <created>1735478065655</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1735478065655</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,6 +316,7 @@
     <MESSAGE value="href fallback + dont save history" />
     <MESSAGE value="expUrl to have sessID and studID" />
     <MESSAGE value="press enter to continue" />
-    <option name="LAST_COMMIT_MESSAGE" value="press enter to continue" />
+    <MESSAGE value="no enter if error" />
+    <option name="LAST_COMMIT_MESSAGE" value="no enter if error" />
   </component>
 </project>
