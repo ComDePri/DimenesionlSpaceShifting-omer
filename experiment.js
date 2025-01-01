@@ -211,7 +211,7 @@ var stage_counter = 0 // tracks number of stages
 var trial_counter = 0 // tracks trials in each stage
 var wrong_counter = 0 // tracks wrong trials
 var stage_over = 0 // when this variable equals 1 the experiment transitions to the next stage
-var end_experiment = 0
+//var end_experiment = 0
 var target = '' // target is one of the stims
 var stims = []
 var reversal = false
@@ -268,12 +268,11 @@ var instructions_block = {
 		trial_id: 'instruction'
 	},
 	pages: [
-		'<div class = centerbox><p class = "block-text">' + 'In this task, you will see two patterns placed in two of the four boxes on the screen (as shown on the next screen). One of the patterns is correct. You must select the one you think is correct by pressing the arrow key corresponding to the correct box (left, right, up, or down).' + '</p>' +
-		' <p class = "block-text">' + 'There is a rule you need to follow to ensure you make the correct choice each time. The computer will track how well you are doing, and when it is clear that you know the rule, the computer will change it. However, this will not happen very often. Initially, there is nothing on the screen to indicate which of the two patterns is correct, so your first choice will be a simple guess. The computer will provide feedback after each attempt to let you know whether you are right or wrong.'+ '</p></div>',
+		'<div class = centerbox><p class = "block-text">' + 'In this task, you will see two patterns placed in two of the four boxes on the screen (as shown on the next screen). One of the patterns is correct. You must select the one you think is correct by pressing the arrow key corresponding to the correct box (left, right, up, or down).', + '</p>' +
 		instruction_stim +
 		'<div class = betweenStimBox><div class = "center-text">An example trial.</div></div>',
-		'<div class = centerbox><p class = "block-text">Once again, you will see two patterns, similar to what you saw on the previous page. One of the patterns is correct. You select a pattern by pressing the corresponding arrow key. After you respond, you will receive feedback indicating whether your choice was correct. Once the computer determines that you have learned the rule, the rule will change.</p></div>',
-		'<div class = centerbox><p class = "block-text">'+ '<strong>If your activity is three standard deviations below the participants’ average or if you are not active in the task, we may ask you to return your submission.</strong></p></div>'
+		'<div class = centerbox><p class = "block-text">In this task, there are changing rules you need to follow to ensure you make the correct choice each time. You will receive feedback after each attempt to let you know whether you are right or wrong. The computer will track your performance, and when it is clear that you know the rule, the computer will change it without notifying you. If you fail to understand the rule after too many attempts, the task will end.</p></div>',
+		'<div class = centerbox><p class = "block-text">The task will now begin. Initially, there is nothing on the screen to indicate which of the two patterns is correct, so your first choice will be a simple guess.\n</p></div>'
 	],
 	allow_keys: false,
 	show_clickable_nav: true,
@@ -471,15 +470,15 @@ for (b = 0; b < blocks.length; b++) {
 			if (data.correct === true) {
 				correct_counter++
 			} else {
-				wrong_counter++
+				//wrong_counter++
 				console.log("wrong" + wrong_counter)
 				correct_counter = 0
 			}
-			if( wrong_counter === 3){
-				stage_over = 1
-				end_experiment = true
+			//if( wrong_counter === 3){
+			//	stage_over = 1
+			//	end_experiment = true
 
-			}
+			//}
 			if (correct_counter === 6 || trial_counter === max_trials) {
 				stage_over = 1
 			}
@@ -492,13 +491,13 @@ for (b = 0; b < blocks.length; b++) {
 		timeline: [fixation_block, stage_block],
 		loop_function: function(data) {
 
-			if (end_experiment) {
-				jsPsych.getDisplayElement().innerHTML = ''; // Clear the display
-				jsPsych.init({
-					timeline: [error_block]
-				});
-				return false;
-			}
+			// if (end_experiment) {
+			// 	jsPsych.getDisplayElement().innerHTML = ''; // Clear the display
+			// 	jsPsych.init({
+			// 		timeline: [error_block]
+			// 	});
+			// 	return false;
+			// }
 
 			if (stage_over == 1) {
 				stage_over = 0
