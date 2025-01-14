@@ -186,16 +186,11 @@ function showErrorMessage() {
 	});
 }
 
-function uploadDataWithRetry(is_error, retryCount = 3, delay = 1000) {
+function uploadDataWithRetryOld(retryCount = 3, delay = 1000) {
 
 	let subject = getProlificId();
 	let data = jsPsych.data.dataAsJSON();// Get data as JSON string
-	let exp_url
-	if(is_error){
-		exp_url = 'https://app.prolific.com/submissions/complete?cc=CMYS8K0Y'
-	} else {
-		exp_url = getExpURL()
-	}
+
 	$.ajax({
 		url: 'https://hss74dd1ed.execute-api.us-east-1.amazonaws.com/dev/',
 		type: 'POST',
@@ -207,13 +202,13 @@ function uploadDataWithRetry(is_error, retryCount = 3, delay = 1000) {
 		}),
 		success: function(response) {
 			console.log('Data uploaded successfully:', response);
-			window.location.href = exp_url;
+			window.location.href = getExpURL();
 		},
 		error: function(xhr, status, error) {
 			console.error(`Error uploading data (${retryCount} retries left):`, error);
 			if (retryCount > 0) {
 				setTimeout(() => {
-					uploadDataWithRetry(is_error,retryCount - 1, delay * 2); // Double the delay
+					uploadDataWithRetry(retryCount - 1, delay * 2); // Double the delay
 				}, delay);
 			} else {
 				console.error('All retry attempts failed.');
@@ -224,6 +219,53 @@ function uploadDataWithRetry(is_error, retryCount = 3, delay = 1000) {
 	});
 }
 
+function uploadDataWithRetry(lastTry=false, endTest=true ,retryCount = 5, delay = 1000) {
+	let subject = getProlificId();
+	let data = jsPsych.data.dataAsJSON(); // Get data as JSON string
+
+	return new Promise((resolve, reject) => {
+		function attemptUpload(remainingRetries) {
+			$.ajax({
+				url: 'https://hss74dd1ed.execute-api.us-east-1.amazonaws.com/dev/',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({
+					"subject_id": `${subject}`,
+					"bucket": `${BUCKET_NAME}`,
+					"exp_data": JSON.stringify(data)
+				}),
+				success: function(response) {
+					console.log('Data uploaded successfully:', response);
+					resolve(response); // Resolve the promise on success
+					if(endTest) {
+						window.location.href = getExpURL();
+					}
+				},
+				error: function(xhr, status, error) {
+					let errorMessage = xhr.responseText || "Unknown Status Msg";
+					let errorCode = xhr.status || "Unknown Status Code";
+
+					jsPsych.data.addDataToLastTrial({"upload_error": errorMessage + " - " + errorCode});
+					console.error(`Error uploading data (${remainingRetries} retries left):`, error);
+					if (remainingRetries > 0) {
+						setTimeout(() => {
+							attemptUpload(remainingRetries - 1); // Retry with reduced retry count
+						}, delay);
+					} else {
+						console.error('All retry attempts failed.');
+						if(lastTry) {
+							downloadJSON(data, 'tol_results_' + subject); // Download data locally
+							showErrorMessage(); // Display error message
+						}
+						reject(new Error('All retry attempts failed.')); // Reject the promise on failure
+					}
+				}
+			});
+		}
+
+		attemptUpload(retryCount); // Start the upload process
+	});
+}
 
 /* ************************************ */
 /* Define experimental variables */
@@ -421,6 +463,81 @@ var fixation_block = {
 	timing_response: 500
 }
 
+
+var manual_upload_block = {
+	type: 'poldrack-text',
+	data: {
+		trial_id: "end",
+		exp_id: 'tower_of_london'
+	},
+	timing_response: 180000,
+	text: `
+    <div class="centerbox" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center;">
+  <p class="center-block-text" style="margin-bottom: 20px;">Thanks for completing this task!</p>
+  <p class="center-block-text" style="margin-bottom: 20px;">Please press the button below to upload your data.</p>
+  <button id="uploadButton" class="button" style="padding: 10px 20px; font-size: 16px; cursor: pointer; text-align: center;">Upload</button>
+  <p id="countdown" style="display: none; margin-top: 20px; font-size: 14px;">Please wait <span id="timer">20</span> seconds before trying again.</p>
+</div>`,
+	cont_key: [1],
+	timing_post_trial: 0,
+	on_load: function () {
+		setTimeout(() => { // Ensure DOM is fully loaded
+			let uploadAttempts = 0;
+			const maxAttempts = 3;
+			const uploadButton = document.getElementById('uploadButton');
+			const countdownText = document.getElementById('countdown');
+			const timerSpan = document.getElementById('timer');
+
+			// Ensure the uploadButton is found
+			if (!uploadButton) {
+				console.error("Upload button not found in the DOM.");
+				return;
+			}
+
+			// Disable button with countdown
+			function startCountdown() {
+				let remainingTime = 10;
+				uploadButton.disabled = true;
+				uploadButton.classList.add('disabled');
+				countdownText.style.display = 'block';
+
+				const interval = setInterval(() => {
+					remainingTime -= 1;
+					timerSpan.textContent = remainingTime;
+
+					if (remainingTime <= 0) {
+						clearInterval(interval);
+						uploadButton.disabled = false;
+						uploadButton.classList.remove('disabled');
+						countdownText.style.display = 'none';
+					}
+				}, 1000);
+			}
+
+			// Handle button click
+			uploadButton.addEventListener('click', () => {
+				startCountdown();
+				let isLastTry = false;
+				if (uploadAttempts >= maxAttempts) {
+					isLastTry = true;
+				}
+				uploadDataWithRetry(isLastTry)
+					.then(() => {
+						alert('Upload succeeded! Redirecting...');
+						window.location.href = getExpURL(); // Replace with your success page URL
+					})
+					.catch(() => {
+						uploadAttempts += 1;
+					});
+			});
+		}, 0); // Defer execution to ensure DOM is ready
+	},
+	on_finish: function () {
+		console.log("Manual upload block completed.");
+	}
+};
+
+
 var define_simple_stims = {
 	type: 'call-function',
 	data: {
@@ -591,4 +708,5 @@ for (b = 0; b < blocks.length; b++) {
 	}
 }
 dimensional_set_shifting_experiment.push(end_block)
+dimensional_set_shifting_experiment.push(manual_upload_block)
 

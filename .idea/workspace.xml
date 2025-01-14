@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="dont do on finish in the html">
+    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="new upload funciton">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +90,8 @@
       <workItem from="1735493773958" duration="3000" />
       <workItem from="1735759467821" duration="732000" />
       <workItem from="1735808847432" duration="2669000" />
+      <workItem from="1736169411135" duration="720000" />
+      <workItem from="1736260563011" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -315,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735809458633</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="new upload funciton">
+      <option name="closed" value="true" />
+      <created>1736169790454</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1736169790454</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +356,7 @@
     <MESSAGE value="press enter to continue" />
     <MESSAGE value="no enter if error" />
     <MESSAGE value="dont do on finish in the html" />
-    <option name="LAST_COMMIT_MESSAGE" value="dont do on finish in the html" />
+    <MESSAGE value="new upload funciton" />
+    <option name="LAST_COMMIT_MESSAGE" value="new upload funciton" />
   </component>
 </project>
