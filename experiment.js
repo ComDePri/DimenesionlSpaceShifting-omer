@@ -670,6 +670,7 @@ for (b = 0; b < blocks.length; b++) {
 			//}
 			if (correct_counter === 6 || trial_counter === max_trials) {
 				stage_over = 1
+				saveData()
 			}
 			// Log the number of remaining trials for this stage
 			//console.log(`Trial ${trial_counter} completed.`);
