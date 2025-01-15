@@ -328,7 +328,7 @@ var stage_counter = 0 // tracks number of stages
 var trial_counter = 0 // tracks trials in each stage
 var wrong_counter = 0 // tracks wrong trials
 var stage_over = 0 // when this variable equals 1 the experiment transitions to the next stage
-//var end_experiment = 0
+var end_experiment = 0
 var target = '' // target is one of the stims
 var stims = []
 var reversal = false
@@ -440,7 +440,7 @@ var error_block = {
 		trial_id: "end",
 		exp_id: 'dimensional_set_shifting'
 	},
-	text: '<div class="centerbox"><p class="center-block-text">You failed to understand the rule within 50 attempts, indicating that you gave intentionally low-effort responses.\n' +
+	text: '<div class="centerbox"><p class="center-block-text">You failed to understand the rule within 50 attempts, we will proceed now to the .\n' +
 		'The task will now end, and your participation in the study will be incomplete.</p></div>',
 	cont_key: [], // Disable key press
 	timing_post_trial: 0,
@@ -659,15 +659,15 @@ for (b = 0; b < blocks.length; b++) {
 			if (data.correct === true) {
 				correct_counter++
 			} else {
-				//wrong_counter++
+				wrong_counter++
 				console.log("wrong" + wrong_counter)
 				correct_counter = 0
 			}
-			//if( wrong_counter === 3){
-			//	stage_over = 1
-			//	end_experiment = true
+			if( wrong_counter === 50){
+				stage_over = 1
+				end_experiment = true
 
-			//}
+			}
 			if (correct_counter === 6 || trial_counter === max_trials) {
 				stage_over = 1
 				saveData()
@@ -681,17 +681,18 @@ for (b = 0; b < blocks.length; b++) {
 		timeline: [fixation_block, stage_block],
 		loop_function: function(data) {
 
-			// if (end_experiment) {
-			// 	jsPsych.getDisplayElement().innerHTML = ''; // Clear the display
-			// 	jsPsych.init({
-			// 		timeline: [error_block]
-			// 	});
-			// 	return false;
-			// }
+			 if (end_experiment) {
+			 	jsPsych.getDisplayElement().innerHTML = ''; // Clear the display
+			 	jsPsych.init({
+			 		timeline: [end_block, manual_upload_block]
+			 	});
+			 	return false;
+			 }
 
 			if (stage_over == 1) {
 				stage_over = 0
 				correct_counter = 0
+				wrong_counter = 0
 				trial_counter = 0
 				stage_counter += 1
 				//console.log(`Stage Over.`);
