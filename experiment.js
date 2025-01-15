@@ -473,8 +473,8 @@ var manual_upload_block = {
 	timing_response: 180000,
 	text: `
     <div class="centerbox" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center;">
-  <p class="center-block-text" style="margin-bottom: 20px;">Thanks for completing this task!</p>
-  <p class="center-block-text" style="margin-bottom: 20px;">Please press the button below to upload your data.</p>
+  <p class="center-block-text" style="margin-bottom: 20px;">Please wait while your data is being uploaded</p>
+  <p class="center-block-text" style="margin-bottom: 20px;"> If you are not redirected automatically, click the 'Upload' button.</p>
   <button id="uploadButton" class="button" style="padding: 10px 20px; font-size: 16px; cursor: pointer; text-align: center;">Upload</button>
   <p id="countdown" style="display: none; margin-top: 20px; font-size: 14px;">Please wait <span id="timer">20</span> seconds before trying again.</p>
 </div>`,
