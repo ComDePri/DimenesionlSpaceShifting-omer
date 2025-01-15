@@ -663,12 +663,12 @@ for (b = 0; b < blocks.length; b++) {
 				console.log("wrong" + wrong_counter)
 				correct_counter = 0
 			}
-			if( wrong_counter === 50){
+			if(trial_counter === max_trials){
 				stage_over = 1
 				end_experiment = true
 
 			}
-			if (correct_counter === 6 || trial_counter === max_trials) {
+			if (correct_counter === 6) {
 				stage_over = 1
 				saveData()
 			}

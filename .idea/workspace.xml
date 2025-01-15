@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="new upload funciton">
+    <list default="true" id="f7d99ba7-f87d-43e0-b8a4-ab44ecf9220a" name="Changes" comment="worng counter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment.js" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.js" afterDir="false" />
     </list>
@@ -94,7 +94,8 @@
       <workItem from="1736169411135" duration="720000" />
       <workItem from="1736260563011" duration="11000" />
       <workItem from="1736879818897" duration="1126000" />
-      <workItem from="1736948585526" duration="1120000" />
+      <workItem from="1736948585526" duration="1412000" />
+      <workItem from="1736950718301" duration="319000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -344,7 +345,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736880046684</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="worng counter">
+      <option name="closed" value="true" />
+      <created>1736949754904</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1736949754904</updated>
+    </task>
+    <task id="LOCAL-00033" summary="worng counter">
+      <option name="closed" value="true" />
+      <created>1736949990463</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1736949990463</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,6 +393,7 @@
     <MESSAGE value="no enter if error" />
     <MESSAGE value="dont do on finish in the html" />
     <MESSAGE value="new upload funciton" />
-    <option name="LAST_COMMIT_MESSAGE" value="new upload funciton" />
+    <MESSAGE value="worng counter" />
+    <option name="LAST_COMMIT_MESSAGE" value="worng counter" />
   </component>
 </project>
